@@ -8,8 +8,8 @@ This library helps keeping boto3 clients with the fresh aws temp credentials
 
 Usage:
 
-# this example shows how to manage the AWSRequestAuth object with the fresh temp credentials 
-# these credentials will be automatically refreshed by the AwsSessionManamagement class
+This example shows how to manage the AWSRequestAuth object with the fresh temp credentials 
+These credentials will be automatically refreshed by the AwsSessionManamagement class
 
 Using the following libraries:
 
