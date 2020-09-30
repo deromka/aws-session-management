@@ -2,10 +2,14 @@ import logging
 from botocore.exceptions import ClientError
 from os import environ
 import boto3
-from datetime import datetime
-import pytz
+from datetime import datetime, timezone
+import dateutil.parser as dt
 
 logger = logging.getLogger(__name__)
+
+
+def is_expired(dt_string):
+    return dt.isoparse(dt_string) < datetime.now(timezone.utc)
 
 
 class AwsSessionManagement:
@@ -18,7 +22,6 @@ class AwsSessionManagement:
     aws_region = None
     session_expirationdate = None
     client = None
-
 
     def __init__(self, role_arn, external_id=None, func=None, func_params_dict=None, role_session_name="RoleSession"):
         """
@@ -36,7 +39,7 @@ class AwsSessionManagement:
         self.external_id = external_id
         self.func = func
         self.func_res = None
-        self.func_params_dict = None
+        self.func_params_dict = func_params_dict
         self.role_session_name = role_session_name
         self.set_params()
 
@@ -46,7 +49,7 @@ class AwsSessionManagement:
         else:
             if (any([self.aws_access_key_id is None, self.aws_secret_access_key is None, self.aws_session_token is None,
                      self.session_expirationdate is None])) or all(
-                    [self.session_expirationdate is not None, self.session_expirationdate < pytz.utc.localize(datetime.now())]):
+                    [self.session_expirationdate is not None, is_expired(self.session_expirationdate)]):
                 try:
                     logger.info(f"AssumingRole '{self.role_arn}' ...")
                     if self.external_id:
