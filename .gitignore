@@ -1,0 +1,12 @@
+/env
+.iml
+.DS_Store
+.idea
+.aws-sam
+/venv/
+/htmlcov
+/package
+build/
+dist/
+*.egg-info/
+*/__pycache__/
