@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 def is_expired(dt_string):
-    return dt.isoparse(dt_string) < datetime.now(timezone.utc)
+    return dt.parse(dt_string) < datetime.now(timezone.utc)
 
 
 class AwsSessionManagement:
