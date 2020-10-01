@@ -3,13 +3,13 @@ from botocore.exceptions import ClientError
 from os import environ
 import boto3
 from datetime import datetime, timezone
-import dateutil.parser as dt
 
 logger = logging.getLogger(__name__)
 
 
 def is_expired(dt_string):
-    return dt.parse(dt_string) < datetime.now(timezone.utc)
+
+    return datetime.fromisoformat(dt_string.replace('Z', '+00:00')) < datetime.now(timezone.utc)
 
 
 class AwsSessionManagement:
