@@ -8,8 +8,10 @@ logger = logging.getLogger(__name__)
 
 
 def is_expired(dt_string):
-
-    return datetime.fromisoformat(dt_string.replace('Z', '+00:00')) < datetime.now(timezone.utc)
+    logger.debug(f"is_expired: dt_string: {str(dt_string)}")
+    datetime_received = datetime.fromisoformat(str(dt_string).replace('Z', '+00:00'))
+    now_datetime = datetime.now(timezone.utc)
+    return datetime_received < now_datetime
 
 
 class AwsSessionManagement:
