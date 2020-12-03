@@ -89,7 +89,7 @@ class AwsSessionManagement:
                         logger.info("Executed function")
 
                 except Exception as e:
-                    logger.error("Failed AssumingRole: " + e)
+                    logger.error("Failed AssumingRole: " + str(e))
                     raise e
 
     def get_aws_credentials(self):
