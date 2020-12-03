@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="aws-session-management",
-    version="0.0.5",
+    version="0.0.6",
     author="Roman Dembitsky",
     author_email="romande@gmail.com",
     description="AWS Session Management",
