@@ -25,7 +25,7 @@ class AwsSessionManagement:
     session_expirationdate = None
     client = None
 
-    def __init__(self, role_arn, external_id=None, func=None, func_params_dict=None, role_session_name="RoleSession", aws_region="eu-west-1"):
+    def __init__(self, role_arn, external_id=None, func=None, func_params_dict=None, role_session_name="RoleSession", aws_region=None):
         """
         Constructor
         :param role_arn: a role to assume
