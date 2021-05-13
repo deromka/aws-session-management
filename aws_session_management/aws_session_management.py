@@ -25,7 +25,7 @@ class AwsSessionManagement:
     session_expirationdate = None
     client = None
 
-    def __init__(self, role_arn, external_id=None, func=None, func_params_dict=None, role_session_name="RoleSession"):
+    def __init__(self, role_arn, external_id=None, func=None, func_params_dict=None, role_session_name="RoleSession", aws_region="eu-west-1"):
         """
         Constructor
         :param role_arn: a role to assume
@@ -35,6 +35,7 @@ class AwsSessionManagement:
         :param func_params_dict optional parameters dictionary to be passed to func
         :param role_session_name a session name
         """
+        self.aws_region = aws_region
         if self.client is None:
             self.client = boto3.client('sts', region_name=self.aws_region)
         self.role_arn = role_arn
