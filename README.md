@@ -80,4 +80,19 @@ response = requests.get(f"{self.api_gateway_url}/abc", auth=auth, headers=header
 ```
 
 
+To Release Package:
  
+1) Install Required packages:
+
+```python -m pip install -U twine setuptools wheel```
+
+2) compile
+```python setup.py sdist bdist_wheel```
+
+3) Publish to Test Repo
+
+```python -m twine upload --verbose --repository  testpypi dist/*```
+
+4) Publish to Prod Repo
+
+```python -m twine upload dist/*```
